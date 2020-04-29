@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'recording.dart';
+
+List<ItemModel> data=[ItemModel(header: 'hello', bodyModel: BodyModel(recording: 1,play: FlatButton(child: Text('button'),)))];
 
 class Work extends StatefulWidget {
   @override
@@ -15,7 +18,47 @@ class _WorkState extends State<Work> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(itemBuilder: (context, index){return null;}),
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (BuildContext context, int index){
+                final item = data[index];
+                return Dismissible(
+                  child: ExpansionPanelList(
+                    animationDuration: Duration(seconds: 1),
+                    children: [
+                      ExpansionPanel(
+                        body: Container(
+                          child: Row(
+                            children: [
+                              Text(data[index].bodyModel.recording.toString()),
+                              data[index].bodyModel.play,
+                            ],
+                          ),
+                        ),
+                        headerBuilder: (BuildContext context, bool isExpanded){
+                          return Container(
+                            child: Text(data[index].header),
+                          );
+                        },
+                        isExpanded: data[index].isExpanded,
+                      )
+                    ],
+                    expansionCallback: (int item, bool status){
+                      setState(() {
+                        data[index].isExpanded=!data[index].isExpanded;
+                      });
+                    },
+                  ),
+                  onDismissed: (direction){
+                    setState(() {
+                      data.removeAt(index);
+                    });
+                  },
+                  background: Container(color: Colors.red),
+                  key: Key(item.header),
+                );
+              },
+            ),
           ),
           Container(
             decoration: BoxDecoration(
@@ -30,7 +73,12 @@ class _WorkState extends State<Work> {
                   child: FloatingActionButton(
                     elevation: 20,
                     backgroundColor: Colors.red,
-                    onPressed: (){},
+                    onPressed: (){
+                      int index=data.length;
+                      setState(() {
+                      data.add(ItemModel(header: 'hello'+index.toString(), bodyModel: BodyModel(recording: index, play: FlatButton(child: Text('button '+index.toString()),))));
+                      });
+                    },
                     splashColor: Colors.purple,
                   ),
                 )
