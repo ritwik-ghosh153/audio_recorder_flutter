@@ -38,7 +38,6 @@ class _WorkState extends State<Work> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(data[index].bodyModel.recording),
                               data[index].bodyModel.play,
                             ],
                           ),

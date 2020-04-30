@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class ItemModel {
   bool isExpanded;
@@ -10,14 +11,20 @@ class ItemModel {
 
 class BodyModel {
   String recording;
-  RaisedButton play=RaisedButton(
-    color: Colors.red,
-    child: Text('Play'),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    splashColor: Colors.purple,
-    onPressed: (){
-    },
-  );
+  RaisedButton play;
+  final player=AudioPlayer();
+  BodyModel({this.recording,}){
+    play=RaisedButton(
+      color: Colors.red,
+      child: Text('Play'),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      splashColor: Colors.purple,
+      onPressed: ()async{
+        int result=await player.play(recording, isLocal: true);
+        print('result=${result.toString()}');
+      },
+    );
+  }
 
-  BodyModel({this.recording,});
+
 }
