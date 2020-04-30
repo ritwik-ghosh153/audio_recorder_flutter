@@ -9,8 +9,15 @@ class ItemModel {
 }
 
 class BodyModel {
-  int recording;
-  FlatButton play;
+  String recording;
+  RaisedButton play=RaisedButton(
+    color: Colors.red,
+    child: Text('Play'),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    splashColor: Colors.purple,
+    onPressed: (){
+    },
+  );
 
-  BodyModel({this.recording, this.play});
+  BodyModel({this.recording,});
 }
