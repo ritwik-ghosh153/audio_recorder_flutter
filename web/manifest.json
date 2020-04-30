@@ -5,7 +5,7 @@
     "display": "minimal-ui",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "An app to make audio recordings",
+    "description": "An audio recording app",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

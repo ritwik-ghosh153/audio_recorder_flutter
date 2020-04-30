@@ -1,6 +1,6 @@
 # audiorecorder
 
-An app to make audio recordings
+An audio recording app
 
 ## Getting Started
 
